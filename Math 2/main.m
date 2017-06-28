@@ -10,6 +10,7 @@
 #import "UserInput.h"
 #import "AdditionQuestion.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -18,11 +19,13 @@ int main(int argc, const char * argv[]) {
         
         UserInput *userInput = [[UserInput alloc] init];
         ScoreKeeper *scoreKeeper = [[ScoreKeeper alloc] init];
+        QuestionManager *questionManager = [[QuestionManager alloc] init];
         
         while (PLAY == YES) {
             
             
             AdditionQuestion *additionQuestion = [[AdditionQuestion alloc] init];
+            
             NSLog(@"%@", additionQuestion.question);
             
             [userInput getInput];
@@ -46,6 +49,9 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"%@",[scoreKeeper displayScore]);
                 
             }
+            
+            [questionManager.questions addObject:additionQuestion];
+            NSLog(@"%@", [questionManager timeOutput]);
         }
     }
     return 0;

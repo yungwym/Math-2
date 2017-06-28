@@ -14,15 +14,26 @@
 {
     self = [super init];
     if (self) {
-        
+        _startTime = [NSDate date];
         _leftVal = arc4random_uniform(90) +10;
         _rightVal = arc4random_uniform(90) +10;
         _answer = _leftVal + _rightVal;
         _question = [NSString stringWithFormat:@"What is %ld + %ld?", (long)_leftVal, (long)_rightVal];
-        
     }
     return self;
 }
+
+//Overrider getter for answer
+-(NSInteger)answer {
+    _endTime = [NSDate date];
+    return _answer;
+}
+
+-(NSTimeInterval)answerTime {
+    NSTimeInterval answerTime = (float)[_endTime timeIntervalSinceDate:_startTime];
+    return answerTime;
+}
+
 
 
 @end

@@ -16,7 +16,11 @@
 @property (nonatomic) NSInteger leftVal;
 @property (nonatomic) NSInteger rightVal;
 
+@property (nonatomic) NSDate *startTime;
+@property (nonatomic) NSDate *endTime;
 
+
+-(NSTimeInterval)answerTime;
 
 
 @end
