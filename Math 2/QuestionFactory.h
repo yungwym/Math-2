@@ -1,5 +1,5 @@
 //
-//  AdditionQuestion.h
+//  QuestionFactory.h
 //  Math 2
 //
 //  Created by Alex Wymer  on 2017-06-28.
@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Question.h"
 
-@interface AdditionQuestion : Question
+@interface QuestionFactory : NSObject
+
+@property (nonatomic) NSArray *subclassQuestions;
+
+-(Question *)generateRandomQuestion; 
 
 @end

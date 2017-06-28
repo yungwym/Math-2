@@ -8,25 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "UserInput.h"
-#import "AdditionQuestion.h"
+#import "Question.h"
 #import "ScoreKeeper.h"
 #import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        BOOL PLAY = YES;
-        
         UserInput *userInput = [[UserInput alloc] init];
         ScoreKeeper *scoreKeeper = [[ScoreKeeper alloc] init];
         QuestionManager *questionManager = [[QuestionManager alloc] init];
+        QuestionFactory *questionFactory = [[QuestionFactory alloc] init];
         
+        BOOL PLAY = YES;
         while (PLAY == YES) {
             
             
-            AdditionQuestion *additionQuestion = [[AdditionQuestion alloc] init];
+            Question *mathQuestion = [questionFactory generateRandomQuestion];
             
-            NSLog(@"%@", additionQuestion.question);
+            NSLog(@"%@", mathQuestion.question);
             
             [userInput getInput];
             NSLog(@"You entered: %@", userInput.response);
@@ -37,7 +38,7 @@ int main(int argc, const char * argv[]) {
                 break;
             }
             
-            if (additionQuestion.answer == userInput.response.integerValue) {
+            if (mathQuestion.answer == userInput.response.integerValue) {
                 
                 NSLog(@"Right!");
                 scoreKeeper.right += 1;
@@ -50,7 +51,7 @@ int main(int argc, const char * argv[]) {
                 
             }
             
-            [questionManager.questions addObject:additionQuestion];
+            [questionManager.questions addObject:mathQuestion];
             NSLog(@"%@", [questionManager timeOutput]);
         }
     }
